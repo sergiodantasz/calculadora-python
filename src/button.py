@@ -2,7 +2,8 @@ from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QGridLayout, QPushButton, QWidget
 
 from display import Display
-from utils import is_num_or_dot
+from info import Info
+from utils import is_num_or_dot, is_valid_number
 from variables import MEDIUM_FONT_SIZE
 
 
@@ -19,9 +20,10 @@ class Button(QPushButton):
 
 
 class ButtonGrid(QGridLayout):
-    def __init__(self, display: Display, parent: QWidget | None = None) -> None:
+    def __init__(self, display: Display, info: Info, parent: QWidget | None = None) -> None:
         super().__init__(parent)
         self.display = display
+        self.info = info
         self._grid_mask = [
             ['C', '⌫', '^', '/'],
             ['7', '8', '9', '*'],
@@ -29,7 +31,17 @@ class ButtonGrid(QGridLayout):
             ['1', '2', '3', '+'],
             ['0', '.', '=']
         ]
+        self._equation = ''
         self._create_grid()
+    
+    @property
+    def equation(self):
+        return self._equation
+    
+    @equation.setter
+    def equation(self, value):
+        self._equation = value
+        self.info.setText(value)
     
     def _create_grid(self) -> None:
         for i, row in enumerate(self._grid_mask):
@@ -58,4 +70,7 @@ class ButtonGrid(QGridLayout):
         return slot
     
     def _insert_button_text_to_display(self, button: Button) -> None:
-        pass
+        button_text = button.text()
+        new_display_value = self.display.text() + button_text
+        if is_valid_number(new_display_value):
+            self.display.insert(button_text)

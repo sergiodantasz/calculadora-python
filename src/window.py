@@ -13,11 +13,10 @@ class Window(QMainWindow):
         self.vertical_layout = QVBoxLayout()
         self.central_widget.setLayout(self.vertical_layout)
         self.info = Info()
-        self.info.setText('2.0 ^ 10.0 = 1024.0')  ### TEST ###
         self.add_widget_to_layout(self.info)
         self.display = Display()
         self.add_widget_to_layout(self.display)
-        self.button_grid = ButtonGrid(self.display)
+        self.button_grid = ButtonGrid(self.display, self.info)
         self.vertical_layout.addLayout(self.button_grid)
         self.setCentralWidget(self.central_widget)
     
