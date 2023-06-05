@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QApplication
 
 from display import Display
 from info import Info
+from styles import configure_theme
 from variables import WINDOW_ICON_PATH
 from window import Window
 
@@ -24,6 +25,7 @@ def main() -> None:
     window.setWindowIcon(icon)
     app.setWindowIcon(icon)
 
+    configure_theme()
     window.adjust_fixed_size()
 
     window.show()

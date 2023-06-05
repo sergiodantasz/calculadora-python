@@ -10,3 +10,22 @@ MEDIUM_FONT_SIZE = 24
 SMALL_FONT_SIZE = 18
 TEXT_MARGIN = 15
 MINIMUM_WIDTH = 500
+
+PRIMARY_COLOR = '#1e81b0'
+DARKER_PRIMARY_COLOR = '#16658a'
+DARKEST_PRIMARY_COLOR = '#115270'
+
+QSS = f"""\
+PushButton[cssClass="specialButton"] {{
+    color: #fff;
+    background-color: {PRIMARY_COLOR}
+}}
+PushButton[cssClass="specialButton"]:hover {{
+    color: #fff;
+    background-color: {DARKER_PRIMARY_COLOR}
+}}
+PushButton[cssClass="specialButton"]:pressed {{
+    color: #fff;
+    background-color: {DARKEST_PRIMARY_COLOR}
+}}\
+"""
