@@ -7,9 +7,9 @@ from variables import BIG_FONT_SIZE, MINIMUM_WIDTH, TEXT_MARGIN
 class Display(QLineEdit):
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
-        self.configure_style()
+        self._configure_style()
 
-    def configure_style(self) -> None:
+    def _configure_style(self) -> None:
         font = self.font()
         font.setPixelSize(BIG_FONT_SIZE)
         self.setFont(font)

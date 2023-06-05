@@ -1,5 +1,9 @@
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
 
+from button import ButtonGrid
+from display import Display
+from info import Info
+
 
 class Window(QMainWindow):
     def __init__(self, parent: QWidget | None = None) -> None:
@@ -8,6 +12,13 @@ class Window(QMainWindow):
         self.central_widget = QWidget()
         self.vertical_layout = QVBoxLayout()
         self.central_widget.setLayout(self.vertical_layout)
+        self.info = Info()
+        self.info.setText('2.0 ^ 10.0 = 1024.0')  ### TEST ###
+        self.add_widget_to_layout(self.info)
+        self.display = Display()
+        self.add_widget_to_layout(self.display)
+        self.button_grid = ButtonGrid(self.display)
+        self.vertical_layout.addLayout(self.button_grid)
         self.setCentralWidget(self.central_widget)
     
     def adjust_fixed_size(self) -> None:
