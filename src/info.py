@@ -10,5 +10,7 @@ class Info(QLabel):
         self.configure_style()
     
     def configure_style(self) -> None:
-        self.setStyleSheet(f'font-size: {SMALL_FONT_SIZE}px;')
+        font = self.font()
+        font.setPixelSize(SMALL_FONT_SIZE)
+        self.setFont(font)
         self.setAlignment(Qt.AlignmentFlag.AlignRight)
